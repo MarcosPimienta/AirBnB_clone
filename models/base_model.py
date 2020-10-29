@@ -17,8 +17,8 @@ class BaseModel:
         def __str__(self):
                 """ Return a printed readable string """
 
-                return "[{}] ({}) {}"\
-                        .format(self.__class__.name, self.id, self.__dict__)
+                return "[{}] ({}) {}".format(self.__class__.__name__,
+                                             self.id, self.__dict__)
 
         def save(self):
                 """  updates the public instance attribute
@@ -27,3 +27,11 @@ class BaseModel:
                 self.updated_at = datetime.now()
 
         def to_dict(self):
+                """returns a dictionary containing all keys/values of
+                dict of the instance"""
+                fmt = "%Y-%m-%dT%H:%M:%S.%f"
+                d = self.__dict__.copy()
+                d["__class__"] = self.__class__.__name__
+                d["created_at"] = d["created_at"].strftime(fmt)
+                d["updated_at"] = d["updated_at"].strftime(fmt)
+                return d
