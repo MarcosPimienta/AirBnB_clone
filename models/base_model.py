@@ -8,11 +8,21 @@ from datetime import datetime
 class BaseModel:
         """ Base Model Class"""
 
-        def __init__(self):
+        def __init__(self, *args, **kwargs):
                 """ Constructor """
-                self.id = str(uuid.uuid4())
-                self.created_at = datetime.now()
-                self.updated_at = datetime.now()
+                fmt = "%Y-%m-%dT%H:%M:%S.%f"
+                if kwargs:
+                        if "__class__" in kwargs.keys():
+                                kwargs.pop("__class__")
+                        if "created_at" in kwargs.keys() and type(kwargs["created_at"]) is str:
+                                kwargs["created_at"] = datetime.strptime(kwargs["created_at"], fmt)
+                        if "updated_at" in kwargs.keys() and type(kwargs["updated_at"]) is str:
+                                kwargs["updated_at"] = datetime.strptime(kwargs["updated_at"], fmt)
+                        self.__dict__.update(kwargs)
+                else:
+                        self.id = str(uuid.uuid4())
+                        self.created_at = datetime.now()
+                        self.updated_at = datetime.now()
 
         def __str__(self):
                 """ Return a printed readable string """
