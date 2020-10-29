@@ -1,1 +1,1 @@
-This repo is about AirBnB project
+This repo is about AirBnB project for Holberton School
