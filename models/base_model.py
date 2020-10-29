@@ -8,17 +8,23 @@ from datetime import datetime
 class BaseModel:
         """ Base Model Class"""
 
-        def __init__(self, *args, **kwargs):
+        def __init__(self, *args, **kg):
                 """ Constructor """
                 fmt = "%Y-%m-%dT%H:%M:%S.%f"
-                if kwargs:
-                        if "__class__" in kwargs.keys():
-                                kwargs.pop("__class__")
-                        if "created_at" in kwargs.keys() and type(kwargs["created_at"]) is str:
-                                kwargs["created_at"] = datetime.strptime(kwargs["created_at"], fmt)
-                        if "updated_at" in kwargs.keys() and type(kwargs["updated_at"]) is str:
-                                kwargs["updated_at"] = datetime.strptime(kwargs["updated_at"], fmt)
-                        self.__dict__.update(kwargs)
+                if kg:
+                        if "__class__" in kg.keys():
+                                kg.pop("__class__")
+                        if "created_at" in kg.keys()\
+                           and type(kg["created_at"]) is str:
+                                kg["created_at"] = datetime.\
+                                                   strptime(kg["created_at"],
+                                                            fmt)
+                        if "updated_at" in kg.keys()\
+                           and type(kg["updated_at"]) is str:
+                                kg["updated_at"] = datetime.\
+                                                   strptime(kg["updated_at"],
+                                                            fmt)
+                        self.__dict__.update(kg)
                 else:
                         self.id = str(uuid.uuid4())
                         self.created_at = datetime.now()
