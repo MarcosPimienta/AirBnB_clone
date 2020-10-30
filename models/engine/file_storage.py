@@ -18,7 +18,7 @@ class FileStorage:
 
     def new(self, obj):
         """Sets in __objects the obj with key <obj class name>.id"""
-        self.__objects["{}.{}"format(obj.__class__.__name__, obj.id)] = obj
+        self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
         """Serializes __objects to the JSON file (path: __file_path)"""
@@ -32,10 +32,11 @@ class FileStorage:
         """Deserializes the JSON file to __objects (only if the
         JSON file (__file_path) exists ; otherwise, do nothing.
         If the file doesnt exist, no exception should be raised)"""
+        d = {"BaseModel": BaseModel}
         try:
             with open(self.__file_path, encoding="utf-8") as f:
                 k_obj = json.load(f)
-                for key in k_obj:
-                    self.__objects[key] = k_obj[key]["__class__"](**k_obj[key])
+                for k in k_obj:
+                    self.__objects[k] = d[k_obj[k]["__class__"]](**k_obj[k])
         except:
             pass
