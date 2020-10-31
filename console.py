@@ -112,15 +112,15 @@ class HBNBCommand(cmd.Cmd):
                 if len(args) < 2:
                         print("** instance id missing **")
                         return False
+                key = "{}.{}".format(args[0], args[1])
+                if key not in models.storage.all():
+                        print("** no instance found **")
+                        return False
                 if len(args) < 3:
                         print("** attribute name missing **")
                         return False
                 if len(args) < 4:
                         print("** value missing **")
-                        return False
-                key = "{}.{}".format(args[0], args[1])
-                if key not in models.storage.all():
-                        print("** no instance found **")
                         return False
                 if args[3].isdecimal():
                         args[3] = int(args[3])
