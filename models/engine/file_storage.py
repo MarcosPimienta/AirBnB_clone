@@ -4,6 +4,11 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.city import City
+from models.state import State
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 class FileStorage:
@@ -33,7 +38,9 @@ class FileStorage:
         """Deserializes the JSON file to __objects (only if the
         JSON file (__file_path) exists ; otherwise, do nothing.
         If the file doesnt exist, no exception should be raised)"""
-        d = {"BaseModel": BaseModel, "User": User}
+        d = {"BaseModel": BaseModel, "User": User, "City": City,
+             "State": State, "Amenity": Amenity, "Place": Place,
+             "Review": Review}
         try:
             with open(self.__file_path, encoding="utf-8") as f:
                 k_obj = json.load(f)
