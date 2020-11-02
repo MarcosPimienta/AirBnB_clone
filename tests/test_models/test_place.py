@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unittest for BaseModel"""
+"""Unittest for Place"""
 import unittest
 import contextlib
 import models
@@ -10,8 +10,8 @@ from models.place import Place
 from datetime import datetime
 
 
-class TestBaseModel(unittest.TestCase):
-    """Unittest for BaseModel"""
+class TestPlace(unittest.TestCase):
+    """Unittest for Place"""
 
     def test_doc(self):
         """Test docstrings"""
