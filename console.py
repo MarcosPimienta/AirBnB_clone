@@ -162,5 +162,20 @@ class HBNBCommand(cmd.Cmd):
                 setattr(models.storage.all()[key], args[2], args[3])
                 models.storage.save()
 
+        def do_count(self, arg):
+                """Retrieve the number of instances of a class"""
+
+                args = shlex.split(arg)
+                cter = 0
+
+                if len(args) == 0:
+                        print("** class name missing **")
+                        return False
+
+                for val in models.storage.all().values():
+                        if val.__class__.__name__ == args[0]:
+                                cter += 1
+                print(cter)
+
 if __name__ == '__main__':
         HBNBCommand().cmdloop()
