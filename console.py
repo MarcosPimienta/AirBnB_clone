@@ -34,6 +34,28 @@ class HBNBCommand(cmd.Cmd):
                 """prints prompt again"""
                 pass
 
+        def precmd(self, line):
+                """Check for special cases in line command"""
+                if line:
+                        ls = shlex.split(line)
+                        if "." not in ls[0]:
+                                return line
+                        x = line.split(".", 1)
+                        x1 = x[1].replace(")", "")
+                        x1 = x1.split("(")
+                        x2 = []
+                        x2.append(x1[0])
+                        x2.append(x[0])
+                        if len(x1[1]) > 0:
+                                x3 = x1[1].split(", ")
+                                lenx3 = len(x3)
+                                for i in range(len(x3)):
+                                        x2.append(x3[i])
+                        command_line = " ".join(x2)
+                        return command_line
+                else:
+                        return ""
+
         def do_create(self, arg):
                 """Creates a new instance of BaseModel,
                 saves it (to the JSON file) and prints the id"""
