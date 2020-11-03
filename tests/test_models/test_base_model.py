@@ -34,6 +34,21 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(type(my_model.created_at), datetime)
         self.assertTrue(type(my_model.updated_at), datetime)
 
+        dc = {'id': '56d43177-cc5f-4d6c-a0c1-e167f8c27337',
+              'created_at': '2017-09-28T21:03:54.052298',
+              '__class__': 'BaseModel', 'my_number': 89,
+              'updated_at': '2017-09-28T21:03:54.052302', 'name': 'Holberton'}
+        basemod = BaseModel(**dc)
+        self.assertTrue(isinstance(basemod, BaseModel))
+        self.assertEqual(basemod.name, "Holberton")
+        self.assertEqual(basemod.my_number, 89)
+        self.assertIsNotNone(basemod.id)
+        self.assertEqual(basemod.id, '56d43177-cc5f-4d6c-a0c1-e167f8c27337')
+        self.assertIsNotNone(basemod.created_at)
+        self.assertIsNotNone(basemod.updated_at)
+        self.assertTrue(type(basemod.created_at), datetime)
+        self.assertTrue(type(basemod.updated_at), datetime)
+
     def test_str(self):
         """Test str method"""
         my_model2 = BaseModel()
