@@ -10,7 +10,7 @@ class BaseModel:
         """ Base Model Class"""
 
         def __init__(self, *args, **kg):
-                """ Constructor """
+                """Initializes data"""
                 fmt = "%Y-%m-%dT%H:%M:%S.%f"
                 if kg:
                         if "__class__" in kg.keys():
@@ -33,20 +33,20 @@ class BaseModel:
                         models.storage.new(self)
 
         def __str__(self):
-                """ Return a printed readable string """
+                """Return a printed readable string """
 
                 return "[{}] ({}) {}".format(self.__class__.__name__,
                                              self.id, self.__dict__)
 
         def save(self):
-                """  updates the public instance attribute
-                        updatedat with the current time """
+                """Updates the public instance attribute
+                updatedat with the current time """
 
                 self.updated_at = datetime.now()
                 models.storage.save()
 
         def to_dict(self):
-                """returns a dictionary containing all keys/values of
+                """Returns a dictionary containing all keys values of
                 dict of the instance"""
                 fmt = "%Y-%m-%dT%H:%M:%S.%f"
                 d = self.__dict__.copy()

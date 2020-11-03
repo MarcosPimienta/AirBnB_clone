@@ -12,22 +12,22 @@ from models.review import Review
 
 
 class FileStorage:
-    """serializes instances to a JSON file and deserializes JSON file
+    """Serializes instances to a JSON file and deserializes JSON file
     to instances"""
 
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """Returns the dictionary __objects"""
+        """Returns the dictionary objects"""
         return self.__objects
 
     def new(self, obj):
-        """Sets in __objects the obj with key <obj class name>.id"""
+        """Sets in objects the obj with key obj class name id"""
         self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
-        """Serializes __objects to the JSON file (path: __file_path)"""
+        """Serializes objects to the JSON file"""
         obj_dict = {}
         for key in self.__objects:
             obj_dict[key] = self.__objects[key].to_dict()
@@ -35,9 +35,9 @@ class FileStorage:
             json.dump(obj_dict, f)
 
     def reload(self):
-        """Deserializes the JSON file to __objects (only if the
-        JSON file (__file_path) exists ; otherwise, do nothing.
-        If the file doesnt exist, no exception should be raised)"""
+        """Deserializes the JSON file to objects only if the
+        JSON file exists otherwise do nothing. If the file doesnt exist
+        no exception should be raised"""
         d = {"BaseModel": BaseModel, "User": User, "City": City,
              "State": State, "Amenity": Amenity, "Place": Place,
              "Review": Review}
