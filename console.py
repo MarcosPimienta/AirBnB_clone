@@ -38,6 +38,8 @@ class HBNBCommand(cmd.Cmd):
         def precmd(self, line):
                 """Check for special cases in line command"""
                 if line:
+                        if line.isspace():
+                                return line
                         ls = shlex.split(line)
                         if "." not in ls[0]:
                                 return line
