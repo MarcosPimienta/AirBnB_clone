@@ -9,6 +9,12 @@ from console import HBNBCommand
 from io import StringIO
 from datetime import datetime
 from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.user import User
+from models.city import City
+from models.state import State
+from models.place import Place
+from models.review import Review
 from models.engine.file_storage import FileStorage
 
 
@@ -49,6 +55,30 @@ class TestConsole(unittest.TestCase):
 
         with StringIO() as buf, contextlib.redirect_stdout(buf):
             HBNBCommand().onecmd("create BaseModel")
+            self.assertNotEqual(buf.getvalue(), "")
+
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            HBNBCommand().onecmd("create Amenity")
+            self.assertNotEqual(buf.getvalue(), "")
+
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            HBNBCommand().onecmd("create User")
+            self.assertNotEqual(buf.getvalue(), "")
+
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            HBNBCommand().onecmd("create City")
+            self.assertNotEqual(buf.getvalue(), "")
+
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            HBNBCommand().onecmd("create State")
+            self.assertNotEqual(buf.getvalue(), "")
+
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            HBNBCommand().onecmd("create Place")
+            self.assertNotEqual(buf.getvalue(), "")
+
+        with StringIO() as buf, contextlib.redirect_stdout(buf):
+            HBNBCommand().onecmd("create Review")
             self.assertNotEqual(buf.getvalue(), "")
 
     def test_show(self):
