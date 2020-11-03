@@ -54,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
                         command_line = " ".join(x2)
                         return command_line
                 else:
-                        return ""
+                        return line
 
         def do_create(self, arg):
                 """Creates a new instance of BaseModel,
