@@ -39,9 +39,8 @@ It will open a prompt and it will look like this
 
     (hbnb) 
 
-You are on the cmd line interpreter and it is waiting for you to type and execute a command. Next you will see a list of commands. it will show you how you can exit the shell.
+You are on the cmd line interpreter and it is waiting for you to type and execute a command. Next you will see a list of commands.
     
-Or you can also do Ctrl + D And this will also terminate the simple shell.
 
 ### Some Commands
 
@@ -62,8 +61,13 @@ Here is a list of some commands you can use, there are many more, try to experim
 *Let's take a look at these examples:*
 
     (hbnb) create <class name>
-    (hbnb) update <class name>
-    (hbnb) destroy <class name>
-create will create an instance based from the parent class "BaseModel" and then it will store it on a .json file
-update will update an instance based from the <class name> and then it will remove the previous .json file and store it on a new .json file
-destroy will remove the instance based from the <class name> and then it will remove the previous .json file and store it on a new .json file
+    (hbnb) update <class name> <id> <attribute name> <attribute value>
+    (hbnb) destroy <class name> <id>
+create will create an instance of the given class <class name> and then it will store it on a .json file. It will print the new instance id.
+update will update an instance based on the <class name> and id by adding or updating attribute and then it will save the change into the JSON file
+destroy will remove the instance based on the <class name> and and id , and then it will save the change into the JSON file.
+
+    (hbnb) create BaseModel
+    2dd6ef5c-467c-4f82-9521-a772ea7d84e9
+    (hbnb) quit
+    ~/AirBnB$
