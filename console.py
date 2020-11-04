@@ -50,15 +50,10 @@ class HBNBCommand(cmd.Cmd):
                         x2.append(x1[0])
                         x2.append(x[0])
                         if len(x1[1]) > 0:
-                                x3 = x1[1].split(", ", 1)
-                                x4 = x1[1].split(", ")
+                                x3 = x1[1].split(", ")
                                 lenx3 = len(x3)
-                                if lenx3 > 1 and x3[1].startswith("{"):
-                                        x2.append(x3[0])
-                                        x2.append(x3[1])
-                                else:
-                                        for i in range(len(x4)):
-                                                x2.append(x4[i])
+                                for i in range(len(x3)):
+                                        x2.append(x3[i])
                         command_line = " ".join(x2)
                         return command_line
                 else:
@@ -140,15 +135,6 @@ class HBNBCommand(cmd.Cmd):
         def do_update(self, arg):
                 """Updates an instance based on the class name and id by
                 adding or updating attribute"""
-                if "{" in arg:
-                        args = shlex.split(arg)
-                        key = "{}.{}".format(args[0], args[1])
-                        args_2 = arg.split(" ", 2)
-                        ar_dc = eval(args_2[2])
-                        for k in ar_dic:
-                                setattr(models.storage.all()[key], k, ar_dc[k])
-                        return False
-
                 args = shlex.split(arg)
                 if len(args) == 0:
                         print("** class name missing **")
