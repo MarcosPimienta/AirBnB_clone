@@ -20,6 +20,14 @@ from datetime import datetime
 class TestFileStorage(unittest.TestCase):
     """Unittest for FileStorage"""
 
+    def test_doc(self):
+        """Test docstrings"""
+        self.assertIsNotNone(FileStorage.__doc__)
+        self.assertIsNotNone(FileStorage.all.__doc__)
+        self.assertIsNotNone(FileStorage.new.__doc__)
+        self.assertIsNotNone(FileStorage.save.__doc__)
+        self.assertIsNotNone(FileStorage.reload.__doc__)
+
     def test_all(self):
         """Test all method"""
         d = models.storage.all()
